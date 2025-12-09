@@ -41,8 +41,7 @@ class Tree{
           
      
 } 
-
-searchNode(root,value){
+    searchNode(root,value){
   if(!root) return false
     //check if root value is the same
     if(root.value===value) return true
@@ -55,7 +54,42 @@ searchNode(root,value){
     return this.searchNode(root.left,value)
     //if value<root.value search in the left side
 }
+
+    //DFS
+    //preOrder
+     preOrder(root){
+       if(!root) return null
+       
+       console.log(root.value)
+       this.preOrder(root.left)
+       this.preOrder(root.right)
+       
+     }   
+    //inOrder
+    inOrder(root){
+       if(!root) return null
+       
+       this.inOrder(root.left)
+       console.log(root.value)
+       this.inOrder(root.right)
+       
+     }   
+    //postOrder
+    postOrder(root){
+       if(!root) return null
+       
+       this.postOrder(root.left)
+       this.postOrder(root.right)
+       console.log(root.value)
+       
+     }   
+
 }
+
+
+
+
+
 let arr = [15,10,20,5,7,11,19,27]
 
 const BT = new Tree()  
@@ -64,8 +98,11 @@ arr.forEach(item=>{
 // console.log(BT)
 })
 
+// BT.preOrder(BT.root)
+// BT.inOrder(BT.root)
+BT.postOrder(BT.root)
 console.log("final tree====>",BT)
-console.log("search in  tree====>",12,BT.searchNode(BT.root,277))
+// console.log("search in  tree====>",12,BT.searchNode(BT.root,277))
 
 
 
