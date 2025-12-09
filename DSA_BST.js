@@ -32,7 +32,6 @@ class Tree{
     addNode(value){
       const newNode = new Node(value)
       if(!this.root){
-          console.log("running")
           this.root = newNode
           return;
       }
@@ -84,6 +83,24 @@ class Tree{
        
      }   
 
+    
+    //BFS
+    //BreadthFirstTraversinfg
+    traverseBFS(){
+      let queue = []
+      
+      queue.push(this.root)
+      while(queue.length){
+        let currentNode = queue.shift()
+        console.log(currentNode.value)
+      if(currentNode.left){
+        queue.push(currentNode.left)
+      }
+      if(currentNode.right){
+        queue.push(currentNode.right)
+      }
+      }
+    }
 }
 
 
@@ -100,8 +117,9 @@ arr.forEach(item=>{
 
 // BT.preOrder(BT.root)
 // BT.inOrder(BT.root)
-BT.postOrder(BT.root)
-console.log("final tree====>",BT)
+// BT.postOrder(BT.root)
+BT.traverseBFS()
+// console.log("final tree====>",BT)
 // console.log("search in  tree====>",12,BT.searchNode(BT.root,277))
 
 
