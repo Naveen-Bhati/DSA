@@ -101,13 +101,32 @@ class Tree{
       }
       }
     }
+    
+    //Min Value of the BST
+    minValue(root){
+      if(!root) return null
+      
+      if(!root.left) return root.value
+      
+      return this.minValue(root.left)
+    }
+    
+    
+    //Max Value of the BST
+    maxValue(root){
+      if(!root) return null
+      
+      if(!root.right) return root.value
+      
+      return this.maxValue(root.right)
+    }
 }
 
 
 
 
 
-let arr = [15,10,20,5,7,11,19,27]
+let arr = [15,10,20,21,7,11,1,91,27]
 
 const BT = new Tree()  
 arr.forEach(item=>{
@@ -118,7 +137,9 @@ arr.forEach(item=>{
 // BT.preOrder(BT.root)
 // BT.inOrder(BT.root)
 // BT.postOrder(BT.root)
-BT.traverseBFS()
+// BT.traverseBFS()
+console.log(BT.minValue(BT.root))
+console.log(BT.maxValue(BT.root))
 // console.log("final tree====>",BT)
 // console.log("search in  tree====>",12,BT.searchNode(BT.root,277))
 
