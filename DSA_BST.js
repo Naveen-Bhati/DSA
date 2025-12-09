@@ -41,28 +41,18 @@ class Tree{
           
      
 } 
-searchInChildren(root,value){
-  
-  if(root.value===value) return true
-  
-  if(value<root.value){
-    if(!root.left) return false
-    return this.searchInChildren(root.left,value)
-  }
-    if(!root.right) return false
-    return this.searchInChildren(root.right,value)
-    
-}
-searchNode(value){
+
+searchNode(root,value){
+  if(!root) return false
     //check if root value is the same
-    if(this.root.value===value) return true
+    if(root.value===value) return true
     
     //if value is > root.value search in the right side
-    if(value>this.root.value){
-      return this.searchInChildren(this.root.right,value)
+    if(value>root.value){
+      return this.searchNode(root.right,value)
     }
     
-    return this.searchInChildren(this.root.left,value)
+    return this.searchNode(root.left,value)
     //if value<root.value search in the left side
 }
 }
@@ -75,7 +65,7 @@ arr.forEach(item=>{
 })
 
 console.log("final tree====>",BT)
-console.log("search in  tree====>",12,BT.searchNode(200))
+console.log("search in  tree====>",12,BT.searchNode(BT.root,277))
 
 
 
