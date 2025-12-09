@@ -14,7 +14,6 @@ class Tree{
     isTreeEmpty(root){
         return !!root
     }
-    
     insertNode(givenRoot,givenNode){
         // console.log("given root===>",givenRoot,givenNode)
         
@@ -30,8 +29,7 @@ class Tree{
             givenRoot.right = givenNode
         }
     }
-  
-  addNode(value){
+    addNode(value){
       const newNode = new Node(value)
       if(!this.root){
           console.log("running")
@@ -42,9 +40,33 @@ class Tree{
            this.insertNode(this.root,newNode)
           
      
-}} 
-
-let arr = [10,20,5,7,11,19,27]
+} 
+searchInChildren(root,value){
+  
+  if(root.value===value) return true
+  
+  if(value<root.value){
+    if(!root.left) return false
+    return this.searchInChildren(root.left,value)
+  }
+    if(!root.right) return false
+    return this.searchInChildren(root.right,value)
+    
+}
+searchNode(value){
+    //check if root value is the same
+    if(this.root.value===value) return true
+    
+    //if value is > root.value search in the right side
+    if(value>this.root.value){
+      return this.searchInChildren(this.root.right,value)
+    }
+    
+    return this.searchInChildren(this.root.left,value)
+    //if value<root.value search in the left side
+}
+}
+let arr = [15,10,20,5,7,11,19,27]
 
 const BT = new Tree()  
 arr.forEach(item=>{
@@ -53,5 +75,7 @@ arr.forEach(item=>{
 })
 
 console.log("final tree====>",BT)
+console.log("search in  tree====>",12,BT.searchNode(200))
+
 
 
