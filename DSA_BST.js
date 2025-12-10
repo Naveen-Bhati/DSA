@@ -120,6 +120,53 @@ class Tree{
       
       return this.maxValue(root.right)
     }
+    
+    //removeNode
+    removeNode(value){
+      this.root = this.deleteNode(this.root,value)
+    }
+    
+    //deleteNode
+    deleteNode(root,value){
+      
+      if(!root) return null
+      
+      // if value is less than goto left
+      if(value<root.value){
+        root.left = this.deleteNode(root.left,value)
+      }
+      // else if value is greater than goto right
+      else if(value>root.value){
+        root.right = this.deleteNode(root.right,value)
+      }
+      //else value is same than check for all cases
+      else{
+        //1. root with no child node
+        if(!root.left && !root.right){
+          
+          return null
+        }
+        //2. root with one child node
+        else if(!root.left){
+          return root.right
+        }else if(!root.right){
+          return root.left
+        }
+        
+        //3 root with 2 child node
+        else{
+          //remove the inorder successor which means
+          //updtae the root's value to the min Value 
+          // node of the right side and remove that node
+          root.value = this.minValue(root.right)
+          root.right = this.deleteNode(root.right,root.value)
+          
+        }
+        
+      }
+      return root
+      
+    }
 }
 
 
@@ -138,10 +185,8 @@ arr.forEach(item=>{
 // BT.inOrder(BT.root)
 // BT.postOrder(BT.root)
 // BT.traverseBFS()
-console.log(BT.minValue(BT.root))
-console.log(BT.maxValue(BT.root))
-// console.log("final tree====>",BT)
+// console.log(BT.minValue(BT.root))
+// console.log(BT.maxValue(BT.root))
+BT.removeNode(91)
+console.log("final tree====>",BT)
 // console.log("search in  tree====>",12,BT.searchNode(BT.root,277))
-
-
-
